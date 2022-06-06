@@ -54,7 +54,6 @@ def regenMaze():
     with open('./mazefile/' + fileName, 'r') as file:
             maze = file.readline()
             maze = eval(''.join(maze)) #배열로 불러오기
-    #print(maze)
 
     count = acquired = 3
 
@@ -128,12 +127,10 @@ def keyEvent(e):
             startPos_x += 1
             canvas.move("start", blockSize, 0)
         if [startPos_x, startPos_y] in starPos:
-            #canvas.create_rectangle(startPos_x * blockSize, startPos_y * blockSize, startPos_x * blockSize + blockSize, startPos_y * blockSize + blockSize, fill="white", outline="white")
             #winsound.Playsound("coin.mp3")
             canvas.delete(str(startPos_x)+"+"+str(startPos_y))
             starPos.remove([startPos_x, startPos_y])
             acquired -= 1
-            #print("star acquired")
         if [startPos_x, startPos_y] == endPos[0]:
             if acquired == 0:
                 canvas.delete("end")
@@ -141,7 +138,6 @@ def keyEvent(e):
             else:
                 return
     except IndexError:
-        #print("out of range error")
         return
        
 def endPage():
@@ -151,7 +147,6 @@ def endPage():
     window.unbind("<Key>")
     end_time = datetime.now()
     elapsed_time = end_time - start_time
-    #print(elapsed_time)
     with open('rank.txt', 'a') as file:
         file.write(str(elapsed_time) + "\n")
 
@@ -202,10 +197,8 @@ def rank():
         for i in range(0, l):
             r = tkinter.Label(frm_rank, text=str(i+1) + " - " + top5[i], fg="black", anchor="center", height=2, font=tkFont.Font(size=15))
             r.pack()
-    #print(top5)
     lbl_return.pack()
     frm_rank.place(relx=.5, rely=.5, anchor="c")
 
 startPage()
-#print(stars)
 window.mainloop()
