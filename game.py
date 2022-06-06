@@ -1,10 +1,12 @@
 import tkinter
 import tkinter.font as tkFont
 import random
+import os
 from datetime import datetime
 #import winsound
 
-rnd = str(random.randrange(1,3))
+filecount = len(os.listdir("./mazefile/"))
+rnd = str(random.randrange(1,filecount+1))
 fileName = 'maze' + rnd + '.txt'
 
 with open('./mazefile/' + fileName, 'r') as file:
@@ -46,7 +48,7 @@ canvas = tkinter.Canvas(width=len(maze[0]) * blockSize, height=len(maze) * block
 
 def regenMaze():
     global maze, key, position, startPos, endPos, starPos, startPos_x, startPos_y, acquired, stars
-    rnd = str(random.randrange(1,3))
+    rnd = str(random.randrange(1,filecount))
     fileName = 'maze' + rnd + '.txt'
 
     with open('./mazefile/' + fileName, 'r') as file:
@@ -203,7 +205,7 @@ def rank():
     #print(top5)
     lbl_return.pack()
     frm_rank.place(relx=.5, rely=.5, anchor="c")
-#startPage()
-rank()
+
+startPage()
 #print(stars)
 window.mainloop()
