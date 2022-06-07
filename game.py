@@ -211,6 +211,5 @@ def rank():
             r = tkinter.Label(frm_rank, text=str(i+1) + "위 - " + top10[i], fg=color, font=font)
             r.place(x=10, y=60+30*i)
 
-#startPage()
-rank()
+startPage()
 window.mainloop()
