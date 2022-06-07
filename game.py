@@ -82,16 +82,20 @@ def drawmaze():
     for y in range(len(maze)):
         for x in range(len(maze)):
             if maze[y][x] == 1:
-                wall = canvas.create_rectangle(x * blockSize, y * blockSize, x * blockSize + blockSize, y * blockSize + blockSize, fill="green", outline="green")
+                wall = canvas.create_rectangle(x * blockSize, y * blockSize, x * blockSize + blockSize, y * blockSize + blockSize, \
+                                                fill="green", outline="green")
                 canvas.tag_raise(wall)
             if maze[y][x] == 2:
-                position = canvas.create_rectangle(x * blockSize, y * blockSize, x * blockSize + blockSize, y * blockSize + blockSize, fill="red", outline="red", tags="start")
+                position = canvas.create_rectangle(x * blockSize, y * blockSize, x * blockSize + blockSize, y * blockSize + blockSize, \
+                                                fill="red", outline="red", tags="start")
                 canvas.tag_raise(position)
             if maze[y][x] == 3:
-                end = canvas.create_rectangle(x * blockSize, y * blockSize, x * blockSize + blockSize, y * blockSize + blockSize, fill="skyblue", outline="skyblue", tags="end")
+                end = canvas.create_rectangle(x * blockSize, y * blockSize, x * blockSize + blockSize, y * blockSize + blockSize, \
+                                                fill="skyblue", outline="skyblue", tags="end")
                 canvas.tag_lower(end)
             if maze[y][x] == 4:
-                star = canvas.create_rectangle(x * blockSize, y * blockSize, x * blockSize + blockSize, y * blockSize + blockSize, fill="yellow", outline="yellow", tags=str(x)+"+"+str(y))
+                star = canvas.create_rectangle(x * blockSize, y * blockSize, x * blockSize + blockSize, y * blockSize + blockSize, \
+                                                fill="yellow", outline="yellow", tags=str(x)+"+"+str(y))
                 canvas.tag_lower(star)
 
 def startPage():
@@ -190,7 +194,6 @@ def rank():
 
     lbl_title = tkinter.Label(frm_rank, text="<TOP10 순위>", fg="black", font='Arial 35 bold')
     lbl_title.place(x=10, y=10)
-
     lbl_return = tkinter.Button(frm_rank, text="시작 화면", command=returnPage, width=10, height=2, padx=10, bd=1)
     lbl_return.place(x=270, y=355)
 
