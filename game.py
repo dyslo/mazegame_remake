@@ -12,7 +12,6 @@ fileName = 'maze' + rnd + '.txt'
 with open('./mazefile/' + fileName, 'r') as file:
         maze = file.readline()
         maze = eval(''.join(maze)) #배열로 불러오기
-#print(maze)
 
 count = acquired = 3
 
@@ -165,8 +164,8 @@ def endPage():
     frm_end = tkinter.Frame(window, bd=1)
     lbl_title = tkinter.Label(frm_end, text="게임 끝", fg="black", font=tkFont.Font(size=30))
     lbl_elapsed_time = tkinter.Label(frm_end, text=str(elapsed_time), fg="black", font=tkFont.Font(size=15))
-    lbl_ranking = tkinter.Button(frm_end, text="순위 보기", command=rankPage, width=15, padx=20)
-    lbl_return = tkinter.Button(frm_end, text="게임 시작", command=returnPage,width=15, padx=20)
+    lbl_ranking = tkinter.Button(frm_end, text="순위 보기", command=rankPage, width=10, padx=20)
+    lbl_return = tkinter.Button(frm_end, text="게임 시작", command=returnPage,width=10, padx=20)
     lbl_title.pack()
     lbl_elapsed_time.pack()
     lbl_return.pack()
@@ -175,30 +174,63 @@ def endPage():
 
 def rank():
     def returnPage():
-        frm_rank.place_forget()
+        frm_rank.pack_forget()
         startPage()
 
     with open('rank.txt', 'r') as file:
-        top5 = file.readlines()
-    frm_rank = tkinter.Frame(window, bd=1)
-    lbl_title = tkinter.Label(frm_rank, text="TOP 5 순위", fg="black", font=tkFont.Font(size=30))
-    lbl_return = tkinter.Button(frm_rank, text="시작 화면", command=returnPage, width=15, padx=20)
-    lbl_title.pack(side="left")
-    top5 = sorted(top5)
-    if len(top5) > 5:
-        l = 5
-    else:
-        l = len(top5)
+        top10 = file.readlines()
+        top10 = sorted(top10)
+        if len(top10) > 10:
+            l = 10
+        else:
+            l = len(top10)
 
-    if len(top5) == 0:
-        r = tkinter.Label(frm_rank, text="표시할 순위가 없습니다.", fg="black", anchor="center", height=2, font=tkFont.Font(size=15))
-        r.pack()
+    frm_rank = tkinter.Frame(window)
+    frm_rank.pack(fill="both", expand=True)
+
+    lbl_title = tkinter.Label(frm_rank, text="<TOP10 순위>", fg="black", font='Arial 35 bold')
+    lbl_title.place(x=10, y=10)
+
+    lbl_return = tkinter.Button(frm_rank, text="시작 화면", command=returnPage, width=10, height=2, padx=10, bd=1)
+    lbl_return.place(x=270, y=355)
+
+    if len(top10) == 0:
+        r = tkinter.Label(frm_rank, text="표시할 순위가 없습니다.", fg="black", font='Arial 20')
+        r.place(x=10, y=60)
     else:
         for i in range(0, l):
-            r = tkinter.Label(frm_rank, text=str(i+1) + " - " + top5[i], fg="black", anchor="center", height=2, font=tkFont.Font(size=15))
+            if i == 0:
+                color = "blue"
+                font = "Arial 24 italic"
+            elif i == 1:
+                color = "darkblue"
+                font = "Arial 23 italic"
+            else:
+                color = "black"
+                font = "Arial 20 italic"
+            r = tkinter.Label(frm_rank, text=str(i+1) + "위 - " + top10[i], fg=color, font=font)
+            r.place(x=10, y=60+30*i)
+
+    '''frm_rank = tkinter.Frame(window, bd=2)
+    lbl_title = tkinter.Label(frm_rank, text="TOP 5 순위", fg="black", font=tkFont.Font(size=30))
+    lbl_return = tkinter.Button(frm_rank, text="시작 화면", command=returnPage, width=10, padx=20)
+    lbl_title.pack(side="left")
+    top10 = sorted(top10)
+    if len(top10) > 5:
+        l = 5
+    else:
+        l = len(top10)
+
+    if len(top10) == 0:
+        r = tkinter.Label(frm_rank, text="표시할 순위가 없습니다.", fg="black", anchor="center", height=2, font=tkFont.Font(size=15))
+        r.pack(anchor="center")
+    else:
+        for i in range(0, l):
+            r = tkinter.Label(frm_rank, text=str(i+1) + " - " + top10[i], fg="black", anchor="center", height=2, font=tkFont.Font(size=15))
             r.pack()
     lbl_return.pack()
-    frm_rank.place(relx=.5, rely=.5, anchor="c")
+    frm_rank.place(relx=.5, rely=.5, anchor="c")'''
 
-startPage()
+#startPage()
+rank()
 window.mainloop()
