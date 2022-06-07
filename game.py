@@ -207,29 +207,9 @@ def rank():
                 font = "Arial 23 italic"
             else:
                 color = "black"
-                font = "Arial 20 italic"
+                font = "Arial 22 italic"
             r = tkinter.Label(frm_rank, text=str(i+1) + "위 - " + top10[i], fg=color, font=font)
             r.place(x=10, y=60+30*i)
-
-    '''frm_rank = tkinter.Frame(window, bd=2)
-    lbl_title = tkinter.Label(frm_rank, text="TOP 5 순위", fg="black", font=tkFont.Font(size=30))
-    lbl_return = tkinter.Button(frm_rank, text="시작 화면", command=returnPage, width=10, padx=20)
-    lbl_title.pack(side="left")
-    top10 = sorted(top10)
-    if len(top10) > 5:
-        l = 5
-    else:
-        l = len(top10)
-
-    if len(top10) == 0:
-        r = tkinter.Label(frm_rank, text="표시할 순위가 없습니다.", fg="black", anchor="center", height=2, font=tkFont.Font(size=15))
-        r.pack(anchor="center")
-    else:
-        for i in range(0, l):
-            r = tkinter.Label(frm_rank, text=str(i+1) + " - " + top10[i], fg="black", anchor="center", height=2, font=tkFont.Font(size=15))
-            r.pack()
-    lbl_return.pack()
-    frm_rank.place(relx=.5, rely=.5, anchor="c")'''
 
 #startPage()
 rank()
