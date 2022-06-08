@@ -11,7 +11,8 @@ fileName = 'maze' + rnd + '.txt'
 
 with open('./mazefile/' + fileName, 'r') as file:
         maze = file.readline()
-        maze = eval(''.join(maze)) #배열로 불러오기
+        maze = eval(maze) #배열로 불러오기
+    
 
 count = acquired = 3
 
@@ -29,7 +30,6 @@ position = None
 startPos = [[j, i] for i in range(len(maze)) for j in range(len(maze[i])) if maze[i][j] == 2]
 endPos   = [[j, i] for i in range(len(maze)) for j in range(len(maze[i])) if maze[i][j] == 3]
 starPos  = [[j, i] for i in range(len(maze)) for j in range(len(maze[i])) if maze[i][j] == 4]
-stars = []
 
 startPos_x = startPos[0][0]
 startPos_y = startPos[0][1]
@@ -46,13 +46,13 @@ window.resizable(False, False)
 canvas = tkinter.Canvas(width=len(maze[0]) * blockSize, height=len(maze) * blockSize + 100)
 
 def regenMaze():
-    global maze, key, position, startPos, endPos, starPos, startPos_x, startPos_y, acquired, stars
+    global maze, key, position, startPos, endPos, starPos, startPos_x, startPos_y, acquired
     rnd = str(random.randrange(1,filecount))
     fileName = 'maze' + rnd + '.txt'
 
     with open('./mazefile/' + fileName, 'r') as file:
             maze = file.readline()
-            maze = eval(''.join(maze)) #배열로 불러오기
+            maze = eval(maze) #배열로 불러오기
 
     count = acquired = 3
 
@@ -70,7 +70,6 @@ def regenMaze():
     startPos = [[j, i] for i in range(len(maze)) for j in range(len(maze[i])) if maze[i][j] == 2]
     endPos   = [[j, i] for i in range(len(maze)) for j in range(len(maze[i])) if maze[i][j] == 3]
     starPos  = [[j, i] for i in range(len(maze)) for j in range(len(maze[i])) if maze[i][j] == 4]
-    stars = []
 
     startPos_x = startPos[0][0]
     startPos_y = startPos[0][1]
