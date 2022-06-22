@@ -79,7 +79,7 @@ def generateMaze(size):
     return mazeBase
 
 x = generateMaze(13)
-file = open('/Users/dyslo/Library/Mobile Documents/com~apple~CloudDocs/Study/대학 2학년/컴프실/미로찾기/mazefile/maze2.txt', 'w')
+file = open('path/to/file', 'w')
 
 print(x)
 file.write(str(x))
